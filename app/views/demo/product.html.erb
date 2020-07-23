@@ -1,0 +1,23 @@
+<!-- <h1>Demoindex</h1> -->
+<h1>Product Page</h1>
+<p>Embedding Ruby in HTML files</p>
+<p>
+<% target = "Our List Of Products" %>
+
+<h2>ID: <%= @id %><br/></h2>
+<h4>Next page: <%= @page + 1 %></h4>
+
+</p>
+
+<!--Here is how to embedd ruby in html -->
+
+<p><%= "Here is #{target}" %> </p>
+
+
+
+<!--Adding link to page -->
+<%= link_to("<< Go back to Homepage >>", {:action => 'index'})  %> ||
+<%=link_to("<< List Subjects >>", {:controller => 'subjects',:action => 'list'})  %> ||
+<%=link_to("<< Add New Subject >>", {:controller => 'subjects',:action => 'new'})  %>
+<hr/>
+<%= params.inspect %>

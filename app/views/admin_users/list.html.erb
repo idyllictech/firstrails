@@ -1,0 +1,31 @@
+<% @page_title = "Admin Users List" %>
+<%= link_to("<< Admin Console >>", {:controller => 'access'})  %> ||
+<%= link_to("<< Add New Admin User >>", {:action => 'new'}, :class => 'new-link') %> ||
+<%= link_to("<< Logout >>", {:controller => 'access', :action => 'logout'}, :class => 'new-link') %>
+
+<div class="page list">
+  <h2>Admin Users</h2>
+  
+  <%= link_to("Add New User", {:action => 'new'}, :class => 'action new') %>
+<div><%= pluralize(@admin_users.size, 'admin user') %> found</div>
+  <table class="table table-striped table-hover table-bordered" summary="Page list">
+    <tr class="header">
+      <th>Username</th>      
+      <th>Name</th>      
+      <th>Email Address</th>
+      <th>Actions</th>
+    </tr>
+    <% @admin_users.each do |admin_user| %>
+   <tr class="<%= cycle('odd', 'even') %>" style="font-size:9pt; text-transform: uppercase;">
+      <td><%= admin_user.username %></td>  
+      <td><%= admin_user.name %></td>
+      <td><%= mail_to(admin_user.email) %></td>
+          
+      <td class="actions">
+        <%= link_to("Edit", {:action => 'edit', :id => admin_user.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => admin_user.id}, :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

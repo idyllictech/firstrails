@@ -1,0 +1,33 @@
+<% @page_title = "Subject List" %>
+<div class="page list">
+  <h2>Subjects</h2>
+  <%= link_to("Add New Subject", {:action => 'new'}, :class => 'action new') %>
+  <div><%= pluralize(@subjects.size, 'subject') %> found</div>
+  <table class="table table-striped table-hover table-bordered" summary="Subject list">
+    <tr class="header">
+      <th>Position</th>
+      <th>Subject</th>
+      <th class="center">Visible</th>
+      <th>Pages</th>
+      <th>Actions</th>
+    </tr>
+    <!-- Loops Starts from here -->
+    <% @subjects.each do |subject| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= subject.position %></td>
+      <td><%= subject.name %></td>
+      <td class="center"><%= status_tag(subject.visible) %></td>
+      <td class="center"><%= subject.pages.size %></td>
+      <td class="actions">
+        <%= link_to("View pages", {:controller => 'pages',:action => 'list', :subject_id => subject.id}, :class => 'btn-info action show') %> <!-- use to select pages that belongs to that subject -->
+        <%= link_to("Show", {:action => 'show', :id => subject.id}, :class => 'btn action show') %>
+        <%= link_to("Edit", {:action => 'edit', :id => subject.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => subject.id}, :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+    <!-- Loops ends here -->
+  </table>
+  </div>
+  
+<hr/>

@@ -1,0 +1,36 @@
+<% @page_title = "Update Admin User" %>
+
+<div class="subject edit">
+  <h2>Update Admin User</h2>
+  <%= error_messages_for(@admin_user) %>
+  <%= form_for(:admin_user, :url => {:action => 'update', :id => @admin_user.id}) do |f| %>
+  <table summary="AdminUser form fields">
+      <tr>
+        <th><%= f.label(:last_name) %></th>
+        <td><%= f.text_field(:last_name, :size => 40) %></td>
+      </tr>
+      <tr>
+        <th><%= f.label(:first_name) %></th>
+        <td><%= f.text_field(:first_name, :size => 40) %></td>
+      </tr>
+      <tr>
+        <th><%= f.label(:username) %></th>
+        <td><%= f.text_field(:username, :size => 40) %></td>
+      </tr>
+      <tr>
+        <th><%= f.label(:email) %></th>
+        <td><%= f.text_field(:email, :size => 40, disabled: 'disabled') %></td>
+      </tr>
+      <tr>
+        <th><%= f.label(:password) %></th>
+        <td><%= f.password_field(:password, :size => 40) %></td>
+      </tr>            
+</table>    
+    
+    <div class="btn btn-warning btn-block">
+      <%= submit_tag("Update Admin User") %>
+    </div>
+    
+  <% end %>
+</div>
+

@@ -1,0 +1,22 @@
+<% @page_title = "Backend Admin Menu" %>
+
+<div class="col-md-4"></div>
+
+<div class="col-md-4">
+	<div class="row">
+		<div class="menu">
+			<h2>Admin Menu</h2>
+			<div class="identity">Logged in as: <%= session[:user_name] %></div>
+			<ul>
+				<li><%=link_to("Manage Content", :controller => 'subjects')  %></li>
+				<% if session[:username] ==  "yeanqer07"  %>				
+					<li><%=link_to("Manage Admin Users", :controller => 'admin_users')  %></li>
+				<% else %>
+					<li><%=link_to("Manage Account", :controller => 'admin_users', :action => 'edit', :id => session[:user_id])  %></li> 
+      			<% end %>
+				<li><%=link_to("Logout", {:action => 'logout'})  %></li>
+			</ul>
+		</div>
+</div>
+</div>
+<div class="col-md-4"></div>

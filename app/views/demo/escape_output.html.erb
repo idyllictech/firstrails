@@ -1,0 +1,25 @@
+<% evil_string = "<script>alert('Gotcha!');</script>".html_safe %>
+<% good_string = "<strong>Welcome to my site!</strong>".html_safe %>
+
+<%= evil_string %><br />
+<%= good_string %><br />
+
+<%# raw(evil_string) %><br />
+<%# raw(good_string) %><br />
+
+<%= evil_string.html_safe? %><br />
+<%= good_string.html_safe? %><br />
+
+<hr />
+
+<% simple_string = '<strong>Please</strong> visit <a href="http://example.com">us</a>.'.html_safe %>
+
+<%= strip_links(simple_string) %><br />
+<%= strip_tags(simple_string) %><br />
+
+<hr />
+
+<%= sanitize(evil_string) %><br />
+<%= sanitize(simple_string) %><br />
+<%= sanitize(simple_string, :tags => []) %><br />
+<%= sanitize(simple_string, :tags => ['strong']) %><br />

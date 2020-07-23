@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> <%= @page_title || 'Admin Area' %>:: | ::GIFortress on Rails CMS Admin</title>
+    <meta name="author" content="IDYLLIC DIGITECH SOLUTIONS">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'default', 'data-turbolinks-track': 'reload' %>    
+    <%= favicon_link_tag asset_path('rails.png') %>
+  </head>
+  <body>
+    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+            <span class="navbar-brand h3 text-white">GIFortress on Rails CMS Admin Area <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>            
+<div id="navbarHeader" class="collapse navbar-collapse">
+<div class="navbar-nav">
+<%= Time.now.to_s(:cshow)  %>
+</div>                
+ </div>            
+</nav>
+
+    <div id="main bottom-pad-20"> 
+
+      <% if !flash[:notice].blank? %>
+      <div class="notice" style="color:red">
+        <%= flash[:notice] %>
+      </div>
+      <% end %>
+
+      <div id="content">
+
+      <% if !session[:username].blank? %>
+      <span style="color:purple; font-size:9pt; text-transform: uppercase;">
+        Currently Logged in as: <%= session[:user_name] %> 
+      </span> at:<%= Time.now.to_s(:long) %>
+
+      <%= link_to("Admin Console", {:controller => 'access'})  %> ||
+      <%=link_to("Manage Content", :controller => 'subjects')  %> ||      
+      <%= link_to("Logout", {:controller => 'access', :action => 'logout'}, :class => 'new-link') %>
+      <% end %> 
+        
+      <%= yield %> 
+      </div>
+   
+     
+    </div>
+     </div>
+     <div class="footer bg-dark no-margin pad-20">
+    <p class="text-center text-white top-pad-30 margin-10">&copy; <%= Time.now.prev_year.year %> - <%= Time.now.year %> IDYLLIC DIGITECH SOLUTIONS <a href="#">Powered by iDIGITS Solutions</a></p>
+    </div>
+    </div>
+  </body>
+</html>

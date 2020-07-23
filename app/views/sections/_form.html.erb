@@ -1,0 +1,33 @@
+<%= error_messages_for(@section) %>
+<table summary="Section form fields" class="listing">
+  <tr>
+    <th><%= f.label(:pages_id, "Page") %></th>
+    <td><%= f.collection_select(:pages_id, Page.all, :id, :name, {:disabled => "disabled"}, prompt: true)%>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label(:name) %></th>
+    <td><%= f.text_field(:name, :size => 40) %></td
+  </tr>
+  <tr>
+    <th><%= f.label(:position) %></th>
+    <td><%= f.select(:position, 1..@section_count, {}, {:style => "width: 4em;"}) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:visible) %></th>
+    <td><%= f.check_box(:visible) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label(:content_type, "Content Type") %></th>
+    <td>
+      <%= f.radio_button(:content_type, 'text') %> Text
+      <%= f.radio_button(:content_type, 'HTML') %> HTML
+        
+      </td>
+  </tr>
+  <tr>
+    <th><%= f.label(:content) %></th>
+    <td><%= f.trix_editor :content, required: true, autofocus: true %></td>
+
+  </tr>
+</table>

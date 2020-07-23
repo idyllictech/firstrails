@@ -1,0 +1,25 @@
+<!-- <h1>Demoindex</h1> -->
+<h1>Welcome to Our HEllo Page </h1>
+<p>Embedding Ruby in HTML files</p>
+<p>
+<%= 1 + 1 %>
+<% target = "Our World" %>
+</p>
+
+<!--Here is how to embedd ruby in html -->
+
+<p><%= "Hello #{target}" %> </p>
+
+<% @array.to_a.each do |n| %>
+    <%= n %><br/>
+<% end %>
+
+
+<!--Adding link to page -->
+<%= link_to("<< Go back to Homepage >>", {:action => 'index'})  %>
+
+<%=link_to("<< Product Page >>", {:action => 'product', :id => 20, :page =>5})  %>
+
+<%=link_to("<< Add New Subject >>", {:controller => 'subjects',:action => 'new'})  %> ||
+<hr/>
+<%= params.inspect %>
